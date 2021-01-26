@@ -16,6 +16,6 @@ namespace ENDNMSPC
 
 #define BYTE_ORDER		ENDNMSPC::byte_order.value
 #define BIG_ENDIAN		ENDNMSPC::Endianess::BIG_ENDIAN
-#define LITTLE_ENDIAN	ENDNMSPC::Endianess::LITTLE_ENDIAN
+#define LITTLE_ENDIAN		ENDNMSPC::Endianess::LITTLE_ENDIAN
 
 #endif //BYTEORDER_H
