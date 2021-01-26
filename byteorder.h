@@ -1,29 +1,21 @@
-#ifndef BYTE_ORDER_H
-#define BYTE_ORDER_H
+#ifndef BYTEORDER_H
+#define BYTEORDER_H
 
 #include <cstdint>
 
 namespace ENDNMSPC
 {
-	enum class Endianess
+	enum Endianess
 	{
-		BIG_ENDIAN, LITTLE_ENDIAN
+		BIG_ENDIAN = 0x00000001,
+		LITTLE_ENDIAN = 0x01000000
 	};
-	
-	Endianess get_byte_order()
-	{
-		uint32_t i = 1;
-		uint8_t* b = (uint8_t*)&i;
-		
-		if(b[0] == 0)
-			return Endianess::BIG_ENDIAN;
-		
-		return Endianess::LITTLE_ENDIAN;
-	}
-};
 
-#define BYTE_ORDER 		ENDNMSPC::get_byte_order()
-#define BIG_ENDIAN 		ENDNMSPC::Endianess::BIG_ENDIAN
-#define LITTLE_ENDIAN 	ENDNMSPC::Endianess::LITTLE_ENDIAN
+	static const union { uint8_t bytes[4]; uint32_t value; } byte_order = { {0, 0, 0, 1} };
+}
 
-#endif //BYTE_ORDER_H
+#define BYTE_ORDER		ENDNMSPC::byte_order.value
+#define BIG_ENDIAN		ENDNMSPC::Endianess::BIG_ENDIAN
+#define LITTLE_ENDIAN	ENDNMSPC::Endianess::LITTLE_ENDIAN
+
+#endif //BYTEORDER_H
